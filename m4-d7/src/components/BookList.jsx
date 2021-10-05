@@ -41,7 +41,9 @@ const BookList = (props) => {
                         </Row>
                     </Col>
                     <Col md={4}>
-                        <CommentArea asin={selectedBook} />
+                    <CommentArea asin={selectedBook} /> 
+                        {/* {console.log(selectedBook)}
+                    {selectedBook ? <CommentArea asin={selectedBook} /> : <h3>no comments</h3> } */}
                     </Col>
                 </Row>
             </Container>

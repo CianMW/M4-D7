@@ -15,9 +15,8 @@ const AddComment = (props) => {
 
     useEffect(() => {setComment({
         ...comment,
-        elementId:props.asin
-    })}, [comment.elementId])
-
+        elementId: props.asin
+    })}, [props.asin])
 
  const sendComment = async (e) => {
     e.preventDefault();
@@ -31,7 +30,6 @@ const AddComment = (props) => {
             "Content-type": "application/json",
             Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWQ5ODRiYjUzZDAwMTViMTllZDAiLCJpYXQiOjE2MzMzNTEzMzYsImV4cCI6MTYzNDU2MDkzNn0.foBYQppbMwHt27xv85g0bJnIlqqfTxEZYvCMtHGy918"   
-
           }
         }
       );
@@ -41,9 +39,12 @@ const AddComment = (props) => {
       } else {
         console.log("error");
         alert("something went wrong");
+        console.log(comment)
       }
     } catch (error) {
       console.log("error");
+      console.log(comment)
+
     }
   };
 
@@ -55,7 +56,7 @@ const AddComment = (props) => {
             <Form.Control
               type="text"
               placeholder="Add comment here"
-              value={comment}
+              value={comment.comment}
               onChange={(e) =>
                 setComment({
                     ...comment,

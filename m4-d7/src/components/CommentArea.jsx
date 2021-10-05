@@ -3,28 +3,24 @@ import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import Loading from "./Loading";
 import Error from "./Error";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRef } from "react";
 
 const CommentArea = (props) =>{
-  state = {
-    comments: [], // comments will go here
-    isLoading: false,
-    isError: false
-  };
   const [comments, setComments] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
+  const [asin, setAsin] = useState(null)
 
-  useEffect(() => {}, [comment.elementId])
-  const componentDidUpdate = async (prevProps) => {
-    if (prevProps.asin !== this.props.asin) {
-      this.setState({
-        isLoading: true
-      });
+  useEffect(() => {update()}, [props])
+  const update = async (prevProps) => {
+    if (props.asin !== asin) {
+      setIsLoading( true
+      );
       try {
         let response = await fetch(
           "https://striveschool-api.herokuapp.com/api/comments/" +
-            asin,
+            props.asin,
           {
             headers: {
               Authorization:
@@ -35,19 +31,19 @@ const CommentArea = (props) =>{
         );
         console.log(response);
         if (response.ok) {
-          let comments = await response.json();
-          this.setState({
-            comments: comments,
-            isLoading: false,
-            isError: false
-          });
+          let newComments = await response.json();
+          setComments(newComments);
+            setIsLoading( false);
+            setIsError(false);
         } else {
           console.log("error");
-          this.setState({ isLoading: false, isError: true });
+          setIsLoading( false);
+          setIsError(true);
         }
       } catch (error) {
         console.log(error);
-        this.setState({ isLoading: false, isError: true });
+        setIsLoading( false);
+        setIsError(true);
       }
     }
   };
@@ -57,6 +53,7 @@ const CommentArea = (props) =>{
         {isError && <Error />}
         <AddComment asin={props.asin} />
         <CommentList commentsToShow={comments} />
+        {console.log("here's the comments taht have been fetched")}{console.log(comments)}
       </div>
     );
 }
