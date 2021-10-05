@@ -3,15 +3,20 @@ import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import Loading from "./Loading";
 import Error from "./Error";
+import { useState } from "react";
 
-class CommentArea extends Component {
+const CommentArea = (props) =>{
   state = {
     comments: [], // comments will go here
     isLoading: false,
     isError: false
   };
+  const [comments, setComments] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
 
-  componentDidUpdate = async (prevProps) => {
+  useEffect(() => {}, [comment.elementId])
+  const componentDidUpdate = async (prevProps) => {
     if (prevProps.asin !== this.props.asin) {
       this.setState({
         isLoading: true
@@ -19,11 +24,12 @@ class CommentArea extends Component {
       try {
         let response = await fetch(
           "https://striveschool-api.herokuapp.com/api/comments/" +
-            this.props.asin,
+            asin,
           {
             headers: {
               Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUwNmRlY2RhMzE2MzAwMTVkNTEyM2YiLCJpYXQiOjE2MzI2NjA5NzIsImV4cCI6MTYzMzg3MDU3Mn0.vzSXzuRnbhUs7NjBPeeIiCBg6REuTwnoXE-R7Y-zU9Y"
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWQ5ODRiYjUzZDAwMTViMTllZDAiLCJpYXQiOjE2MzMzNTEzMzYsImV4cCI6MTYzNDU2MDkzNn0.foBYQppbMwHt27xv85g0bJnIlqqfTxEZYvCMtHGy918"
+
             }
           }
         );
@@ -45,17 +51,14 @@ class CommentArea extends Component {
       }
     }
   };
-
-  render() {
     return (
       <div>
-        {this.state.isLoading && <Loading />}
-        {this.state.isError && <Error />}
-        <AddComment asin={this.props.asin} />
-        <CommentList commentsToShow={this.state.comments} />
+        {isLoading && <Loading />}
+        {isError && <Error />}
+        <AddComment asin={props.asin} />
+        <CommentList commentsToShow={comments} />
       </div>
     );
-  }
 }
 
 export default CommentArea;
