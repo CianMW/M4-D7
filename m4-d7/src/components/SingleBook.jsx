@@ -13,7 +13,8 @@ const SingleBook = (props) => {
                 <Card
                     // onClick={() => this.setState({ selected: !this.state.selected })}
                     onClick={() => props.changeSelectedBook(props.book.asin)}
-                    style={{ border: props.selectedBook === props.book.asin ? '3px solid red' : 'none' }}
+                    // style={{ border: props.selectedBook === props.book.asin ? '3px solid red' : 'none' }}
+                    style={{ Color: "white", backgroundColor: props.selectedBook === props.book.asin ? 'LightGrey' : 'transparent' ,border: props.selectedBook === props.book.asin ? '2px solid green' : 'none' }}
                 >
                     <Card.Img variant="top" src={props.book.img} />
                     <Card.Body>

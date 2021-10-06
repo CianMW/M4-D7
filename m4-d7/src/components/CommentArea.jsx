@@ -13,7 +13,7 @@ const CommentArea = (props) =>{
   const [asin, setAsin] = useState(null)
 
   useEffect(() => {update()}, [props])
-  const update = async (prevProps) => {
+  const update = async () => {
     if (props.asin !== asin) {
       setIsLoading( true
       );
