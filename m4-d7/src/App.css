@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: hsl(326, 87%, 91%);
+  font-weight: bolder;
 }
 
 .App-logo {
@@ -21,7 +23,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(0, 64, 138);
 }
 
 .App-link {
@@ -35,4 +37,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+.form{
+  text-align: left;
+}
+.footer{
+  position: fixed;
+  bottom: 0;
+  width:100vw;
 }

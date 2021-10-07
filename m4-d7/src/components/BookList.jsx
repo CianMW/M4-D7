@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SingleBook from './SingleBook'
 import { Col, Container, Form, Row } from 'react-bootstrap'
 import CommentArea from './CommentArea'
+import fantasyBooks from "../Data/fantasyBooks.json"
 
 const BookList = (props) => {
 
@@ -28,7 +29,7 @@ const BookList = (props) => {
                         </Row>
                         <Row>
                             {
-                                props.books.filter(b => b.title.toLowerCase().includes(searchQuery)).map(b => (
+                                fantasyBooks.filter(b => b.title.toLowerCase().includes(searchQuery)).map(b => (
                                     <Col xs={3} key={b.asin} >
                                         <SingleBook
                                             book={b}
